@@ -1,6 +1,7 @@
 import { Search, Filter, CirclePlus, MessageCircle } from 'lucide-react';
 import { useState } from 'react';
 import { ConversationItem } from './conversation-item';
+import { ConversationListSkeleton } from './skeleton-loaders';
 
 interface Conversation {
     id: string;
@@ -15,12 +16,14 @@ interface ChatSidebarProps {
     conversations: Conversation[];
     activeConversationId?: string;
     onSelectConversation?: (id: string) => void;
+    isLoading?: boolean;
 }
 
 export function ChatSidebar({
     conversations,
     activeConversationId,
     onSelectConversation,
+    isLoading = false,
 }: ChatSidebarProps) {
     const [searchQuery, setSearchQuery] = useState('');
 
@@ -61,7 +64,9 @@ export function ChatSidebar({
 
             {/* Conversations List */}
             <div className="flex-1 overflow-y-auto">
-                {filteredConversations.length > 0 ? (
+                {isLoading ? (
+                    <ConversationListSkeleton />
+                ) : filteredConversations.length > 0 ? (
                     filteredConversations.map((conversation) => (
                         <ConversationItem
                             key={conversation.id}
