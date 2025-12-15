@@ -22,7 +22,7 @@ export default function AuthSimpleLayout({
                             href={home()}
                             className="flex flex-col items-center gap-2 font-medium"
                         >
-                            <div className="mb-1 flex h-9 w-9 items-center justify-center rounded-md bg-green-500">
+                            <div className="mb-1 flex h-9 w-9 items-center justify-center rounded-md">
                                 <img src="/favicon.png" alt="WhatsApp" className="size-6" />
                             </div>
                             <span className="sr-only">WhatsApp</span>

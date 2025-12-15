@@ -1,7 +1,7 @@
 export default function AppLogo() {
     return (
         <>
-            <div className="flex aspect-square size-8 items-center justify-center rounded-md bg-green-500 text-white dark:bg-green-600">
+            <div className="flex aspect-square size-8 items-center justify-center rounded-md">
                 <img src="/favicon.png" alt="WhatsApp" className="size-5" />
             </div>
             <div className="ml-1 grid flex-1 text-left text-sm">
