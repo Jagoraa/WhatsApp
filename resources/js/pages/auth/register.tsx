@@ -13,8 +13,8 @@ import AuthLayout from '@/layouts/auth-layout';
 export default function Register() {
     return (
         <AuthLayout
-            title="Create an account"
-            description="Enter your details below to create your account"
+            title="Join WhatsApp"
+            description="Create an account to start messaging"
         >
             <Head title="Register" />
             <Form

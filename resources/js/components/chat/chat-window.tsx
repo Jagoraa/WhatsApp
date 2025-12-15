@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import { ChatHeader } from './chat-header';
 import { ChatInput } from './chat-input';
 import { MessageBubble } from './message-bubble';
+import { ChatWindowSkeleton } from './message-skeleton';
 
 interface Message {
     id: string;
@@ -23,11 +24,13 @@ interface Conversation {
 interface ChatWindowProps {
     conversation?: Conversation;
     onSendMessage?: (message: string) => void;
+    isLoading?: boolean;
 }
 
 export function ChatWindow({
     conversation,
     onSendMessage,
+    isLoading = false,
 }: ChatWindowProps) {
     const [messages, setMessages] = useState<Message[]>(
         conversation?.messages || []
@@ -91,6 +94,10 @@ export function ChatWindow({
                 </div>
             </div>
         );
+    }
+
+    if (isLoading) {
+        return <ChatWindowSkeleton />;
     }
 
     return (

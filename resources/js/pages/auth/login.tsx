@@ -24,8 +24,8 @@ export default function Login({
 }: LoginProps) {
     return (
         <AuthLayout
-            title="Log in to your account"
-            description="Enter your email and password below to log in"
+            title="Log in to WhatsApp"
+            description="Enter your phone number or email to continue"
         >
             <Head title="Log in" />
 

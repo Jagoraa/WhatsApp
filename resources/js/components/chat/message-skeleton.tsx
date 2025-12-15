@@ -23,9 +23,8 @@ export function MessageBubbleSkeleton({ isOwn }: { isOwn: boolean }) {
     return (
         <div className={`flex mb-2 gap-2 ${isOwn ? 'justify-end' : 'justify-start'}`}>
             <Skeleton
-                className={`h-10 rounded-lg ${
-                    isOwn ? 'w-48 rounded-bl-lg' : 'w-56 rounded-br-lg'
-                }`}
+                className={`h-10 rounded-lg ${isOwn ? 'w-48 rounded-bl-lg' : 'w-56 rounded-br-lg'
+                    }`}
             />
         </div>
     );

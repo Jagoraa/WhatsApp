@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ChatSidebar } from '@/components/chat/chat-sidebar';
 import { ChatWindow } from '@/components/chat/chat-window';
-import AppLayout from '@/layouts/app-layout';
+import ChatLayout from '@/layouts/chat-layout';
 import { Head } from '@inertiajs/react';
 
 // Mock data for conversations
@@ -188,7 +188,7 @@ export default function Chat() {
     };
 
     return (
-        <AppLayout>
+        <ChatLayout>
             <Head title="Chats" />
             <div className="flex h-full w-full flex-1 overflow-hidden bg-white dark:bg-gray-950">
                 {/* Sidebar - 1/3 width on desktop */}
@@ -222,6 +222,6 @@ export default function Chat() {
                     )}
                 </div>
             </div>
-        </AppLayout>
+        </ChatLayout>
     );
 }
