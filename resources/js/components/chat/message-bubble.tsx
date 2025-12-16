@@ -1,5 +1,6 @@
 import { cn } from '@/lib/utils';
 import { Check, CheckCheck } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface MessageBubbleProps {
     content: string;
@@ -19,13 +20,18 @@ export function MessageBubble({
     mediaUrl,
 }: MessageBubbleProps) {
     return (
-        <div
+        <motion.div
             className={cn(
                 'flex mb-2 gap-2',
                 isOwn ? 'justify-end' : 'justify-start'
             )}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
         >
-            <div
+            <motion.div
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 10 }}
                 className={cn(
                     'max-w-xs px-4 py-2 rounded-lg',
                     isOwn
@@ -74,7 +80,7 @@ export function MessageBubble({
                         </div>
                     )}
                 </div>
-            </div>
-        </div>
+            </motion.div>
+        </motion.div>
     );
 }

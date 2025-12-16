@@ -1,5 +1,6 @@
 import { MessageCircle } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 import { ChatHeader } from './chat-header';
 import { ChatInput } from './chat-input';
 import { MessageBubble } from './message-bubble';
@@ -109,17 +110,18 @@ export function ChatWindow({
             />
 
             {/* Messages Area */}
-            <div className="flex-1 overflow-y-auto p-4 md:p-6 bg-gray-50 dark:bg-gray-900/50 flex flex-col">
+            <motion.div className="flex-1 overflow-y-auto p-4 md:p-6 bg-gray-50 dark:bg-gray-900/50 flex flex-col" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
                 {messages.length > 0 ? (
                     <>
-                        {messages.map((message) => (
-                            <MessageBubble
-                                key={message.id}
-                                content={message.content}
-                                timestamp={message.timestamp}
-                                isOwn={message.isOwn}
-                                status={message.status}
-                            />
+                        {messages.map((message, index) => (
+                            <motion.div key={message.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.05, duration: 0.3 }}>
+                                <MessageBubble
+                                    content={message.content}
+                                    timestamp={message.timestamp}
+                                    isOwn={message.isOwn}
+                                    status={message.status}
+                                />
+                            </motion.div>
                         ))}
                         <div ref={messagesEndRef} />
                     </>
@@ -140,7 +142,7 @@ export function ChatWindow({
                         </div>
                     </div>
                 )}
-            </div>
+            </motion.div>
 
             <ChatInput onSendMessage={handleSendMessage} />
         </div>

@@ -1,5 +1,6 @@
 import { cn } from '@/lib/utils';
 import { Search, MoreVertical } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface ConversationItemProps {
     id: string;
@@ -23,8 +24,10 @@ export function ConversationItem({
     onClick,
 }: ConversationItemProps) {
     return (
-        <div
+        <motion.div
             onClick={onClick}
+            whileHover={{ x: 4 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 10 }}
             className={cn(
                 'flex items-center gap-3 px-3 py-2 cursor-pointer transition-colors border-l-4',
                 isActive
@@ -60,6 +63,6 @@ export function ConversationItem({
                     {lastMessage}
                 </p>
             </div>
-        </div>
+        </motion.div>
     );
 }

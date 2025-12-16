@@ -1,5 +1,6 @@
 import { Search, Filter, CirclePlus, MessageCircle } from 'lucide-react';
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { ConversationItem } from './conversation-item';
 import { ConversationListSkeleton } from './skeleton-loaders';
 
@@ -63,25 +64,30 @@ export function ChatSidebar({
             </div>
 
             {/* Conversations List */}
-            <div className="flex-1 overflow-y-auto">
+            <motion.div className="flex-1 overflow-y-auto" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
                 {isLoading ? (
                     <ConversationListSkeleton />
                 ) : filteredConversations.length > 0 ? (
-                    filteredConversations.map((conversation) => (
-                        <ConversationItem
-                            key={conversation.id}
-                            {...conversation}
-                            isActive={activeConversationId === conversation.id}
-                            onClick={() => onSelectConversation?.(conversation.id)}
-                        />
-                    ))
-                ) : (
-                    <div className="flex flex-col items-center justify-center h-64 text-center text-gray-500 dark:text-gray-400">
-                        <MessageCircle className="w-12 h-12 mb-3 opacity-50" />
-                        <p>No conversations found</p>
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
+                        {filteredConversations.map((conversation, index) => (
+                            <motion.div key={conversation.id} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: index * 0.05, duration: 0.3 }}>
+                                <ConversationItem
+                                    {...conversation}
+                                    isActive={activeConversationId === conversation.id}
+                                    onClick={() => onSelectConversation?.(conversation.id)}
+                                />
+                            </motion.div>
+                        ))}
+                    </motion.div>
                     </div>
-                )}
-            </div>
+    ) : (
+        <div className="flex flex-col items-center justify-center h-64 text-center text-gray-500 dark:text-gray-400">
+            <MessageCircle className="w-12 h-12 mb-3 opacity-50" />
+            <p>No conversations found</p>
         </div>
+    )
+}
+            </motion.div >
+        </div >
     );
 }
