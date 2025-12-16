@@ -79,15 +79,13 @@ export function ChatSidebar({
                             </motion.div>
                         ))}
                     </motion.div>
+                ) : (
+                    <div className="flex flex-col items-center justify-center h-64 text-center text-gray-500 dark:text-gray-400">
+                        <MessageCircle className="w-12 h-12 mb-3 opacity-50" />
+                        <p>No conversations found</p>
                     </div>
-    ) : (
-        <div className="flex flex-col items-center justify-center h-64 text-center text-gray-500 dark:text-gray-400">
-            <MessageCircle className="w-12 h-12 mb-3 opacity-50" />
-            <p>No conversations found</p>
+                )}
+            </motion.div>
         </div>
-    )
-}
-            </motion.div >
-        </div >
     );
 }
